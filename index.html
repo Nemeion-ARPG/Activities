@@ -21,13 +21,12 @@
     <p id="result" class="text-center text-lg font-medium text-green-600 mt-4"></p>
   </div>
 
-  <script>
+  <script type="module">
+    import { items } from './data/items.js';
+
     const itemList = document.getElementById('itemList');
     const rollItemButton = document.getElementById('rollItem');
     const resultDisplay = document.getElementById('result');
-
-    // Predefined list of items
-    const items = ["Sword", "Shield", "Potion", "Bow", "Arrow", "Helmet", "Armor", "Ring", "Amulet", "Boots"];
 
     function renderItems() {
       itemList.innerHTML = '';
