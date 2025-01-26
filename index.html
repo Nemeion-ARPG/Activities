@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Item Roller</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+  <div class="bg-white shadow-xl rounded-2xl p-6 w-96">
+    <h1 class="text-2xl font-bold text-center mb-4">Random Item Roller</h1>
+    <ul id="itemList" class="text-gray-700 mb-4 list-disc pl-5">
+      <!-- Dynamic items will be added here -->
+    </ul>
+    <input 
+      id="newItem" 
+      type="text" 
+      placeholder="Add a new item" 
+      class="border rounded-lg px-3 py-2 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+    <button 
+      id="addItem" 
+      class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full mb-2 hover:bg-blue-600"
+    >
+      Add Item
+    </button>
+    <button 
+      id="rollItem" 
+      class="bg-green-500 text-white px-4 py-2 rounded-lg w-full hover:bg-green-600"
+    >
+      Roll Item
+    </button>
+    <p id="result" class="text-center text-lg font-medium text-green-600 mt-4"></p>
+  </div>
+
+  <script>
+    const itemList = document.getElementById('itemList');
+    const newItemInput = document.getElementById('newItem');
+    const addItemButton = document.getElementById('addItem');
+    const rollItemButton = document.getElementById('rollItem');
+    const resultDisplay = document.getElementById('result');
+
+    const items = [];
+
+    function renderItems() {
+      itemList.innerHTML = '';
+      items.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'x';
+        deleteButton.className = 'ml-2 text-red-500 hover:underline';
+        deleteButton.onclick = () => {
+          items.splice(index, 1);
+          renderItems();
+        };
+        li.appendChild(deleteButton);
+        itemList.appendChild(li);
+      });
+    }
+
+    addItemButton.addEventListener('click', () => {
+      const newItem = newItemInput.value.trim();
+      if (newItem) {
+        items.push(newItem);
+        newItemInput.value = '';
+        renderItems();
+      }
+    });
+
+    rollItemButton.addEventListener('click', () => {
+      if (items.length > 0) {
+        const randomIndex = Math.floor(Math.random() * items.length);
+        resultDisplay.textContent = `🎲 Rolled Item: ${items[randomIndex]}`;
+      } else {
+        resultDisplay.textContent = '⚠️ Add items first!';
+      }
+    });
+  </script>
+</body>
+</html>
