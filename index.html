@@ -10,14 +10,14 @@
   <div class="bg-white shadow-xl rounded-2xl p-6 w-96">
     <h1 class="text-2xl font-bold text-center mb-4">Random Item Roller</h1>
     <div class="mb-4">
-      <label class="block mb-2 font-medium">Select Category:</label>
-      <div class="flex flex-col">
-        <label><input type="radio" name="category" value="weapons" class="mr-2" checked> Weapons</label>
-        <label><input type="radio" name="category" value="armor" class="mr-2"> Armor</label>
-        <label><input type="radio" name="category" value="potions" class="mr-2"> Potions</label>
-        <label><input type="radio" name="category" value="rings" class="mr-2"> Rings</label>
-        <label><input type="radio" name="category" value="amulets" class="mr-2"> Amulets</label>
-        <label><input type="radio" name="category" value="misc" class="mr-2"> Miscellaneous</label>
+      <label class="block mb-2 font-medium text-center">Select Category:</label>
+      <div class="flex justify-center space-x-4">
+        <label class="flex items-center"><input type="radio" name="category" value="weapons" class="mr-2" checked> Weapons</label>
+        <label class="flex items-center"><input type="radio" name="category" value="armor" class="mr-2"> Armor</label>
+        <label class="flex items-center"><input type="radio" name="category" value="potions" class="mr-2"> Potions</label>
+        <label class="flex items-center"><input type="radio" name="category" value="rings" class="mr-2"> Rings</label>
+        <label class="flex items-center"><input type="radio" name="category" value="amulets" class="mr-2"> Amulets</label>
+        <label class="flex items-center"><input type="radio" name="category" value="misc" class="mr-2"> Miscellaneous</label>
       </div>
     </div>
     <button 
@@ -26,14 +26,17 @@
     >
       Roll Item
     </button>
-    <p id="result" class="text-center text-lg font-medium text-green-600 mt-4"></p>
+    <p id="textResult" class="text-center text-lg font-medium text-blue-600 mt-4"></p>
+    <p id="itemResult" class="text-center text-lg font-medium text-green-600 mt-2"></p>
   </div>
 
   <script type="module">
     import { categories } from './data/items.js';
+    import { predeterminedText } from './data/text.js';
 
     const rollItemButton = document.getElementById('rollItem');
-    const resultDisplay = document.getElementById('result');
+    const textResultDisplay = document.getElementById('textResult');
+    const itemResultDisplay = document.getElementById('itemResult');
 
     function getWeightedRandomItem(items) {
       const weightedItems = items.flatMap(item => Array(item.rarity).fill(item.name));
@@ -41,15 +44,31 @@
       return weightedItems[randomIndex];
     }
 
+    function rollMultipleItems(items, min = 1, max = 3) {
+      const numberOfItems = Math.floor(Math.random() * (max - min + 1)) + min;
+      const results = [];
+      for (let i = 0; i < numberOfItems; i++) {
+        results.push(getWeightedRandomItem(items));
+      }
+      return results;
+    }
+
     rollItemButton.addEventListener('click', () => {
       const selectedCategory = document.querySelector('input[name="category"]:checked').value;
       const items = categories[selectedCategory] || [];
 
+      // Get predetermined text
+      const randomTextIndex = Math.floor(Math.random() * predeterminedText.length);
+      const randomText = predeterminedText[randomTextIndex];
+
+      // Display predetermined text
+      textResultDisplay.textContent = randomText;
+
       if (items.length > 0) {
-        const rolledItem = getWeightedRandomItem(items);
-        resultDisplay.textContent = `🎲 Rolled Item: ${rolledItem}`;
+        const rolledItems = rollMultipleItems(items);
+        itemResultDisplay.textContent = `🎲 Rolled Items: ${rolledItems.join(', ')}`;
       } else {
-        resultDisplay.textContent = '⚠️ No items available!';
+        itemResultDisplay.textContent = '⚠️ No items available!';
       }
     });
   </script>
