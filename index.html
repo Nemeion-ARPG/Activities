@@ -9,6 +9,17 @@
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
   <div class="bg-white shadow-xl rounded-2xl p-6 w-96">
     <h1 class="text-2xl font-bold text-center mb-4">Random Item Roller</h1>
+    <div class="mb-4">
+      <label class="block mb-2 font-medium">Select Category:</label>
+      <div class="flex flex-col">
+        <label><input type="radio" name="category" value="weapons" class="mr-2" checked> Weapons</label>
+        <label><input type="radio" name="category" value="armor" class="mr-2"> Armor</label>
+        <label><input type="radio" name="category" value="potions" class="mr-2"> Potions</label>
+        <label><input type="radio" name="category" value="rings" class="mr-2"> Rings</label>
+        <label><input type="radio" name="category" value="amulets" class="mr-2"> Amulets</label>
+        <label><input type="radio" name="category" value="misc" class="mr-2"> Miscellaneous</label>
+      </div>
+    </div>
     <button 
       id="rollItem" 
       class="bg-green-500 text-white px-4 py-2 rounded-lg w-full hover:bg-green-600"
@@ -19,15 +30,24 @@
   </div>
 
   <script type="module">
-    import { items } from './data/items.js';
+    import { categories } from './data/items.js';
 
     const rollItemButton = document.getElementById('rollItem');
     const resultDisplay = document.getElementById('result');
 
+    function getWeightedRandomItem(items) {
+      const weightedItems = items.flatMap(item => Array(item.rarity).fill(item.name));
+      const randomIndex = Math.floor(Math.random() * weightedItems.length);
+      return weightedItems[randomIndex];
+    }
+
     rollItemButton.addEventListener('click', () => {
+      const selectedCategory = document.querySelector('input[name="category"]:checked').value;
+      const items = categories[selectedCategory] || [];
+
       if (items.length > 0) {
-        const randomIndex = Math.floor(Math.random() * items.length);
-        resultDisplay.textContent = `🎲 Rolled Item: ${items[randomIndex]}`;
+        const rolledItem = getWeightedRandomItem(items);
+        resultDisplay.textContent = `🎲 Rolled Item: ${rolledItem}`;
       } else {
         resultDisplay.textContent = '⚠️ No items available!';
       }
