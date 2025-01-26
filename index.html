@@ -9,9 +9,6 @@
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
   <div class="bg-white shadow-xl rounded-2xl p-6 w-96">
     <h1 class="text-2xl font-bold text-center mb-4">Random Item Roller</h1>
-    <ul id="itemList" class="text-gray-700 mb-4 list-disc pl-5">
-      <!-- Dynamic items will be displayed here -->
-    </ul>
     <button 
       id="rollItem" 
       class="bg-green-500 text-white px-4 py-2 rounded-lg w-full hover:bg-green-600"
@@ -22,20 +19,10 @@
   </div>
 
   <script type="module">
-    import { items } from './data/items.js';
+    import { items } from './items.js';
 
-    const itemList = document.getElementById('itemList');
     const rollItemButton = document.getElementById('rollItem');
     const resultDisplay = document.getElementById('result');
-
-    function renderItems() {
-      itemList.innerHTML = '';
-      items.forEach((item) => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        itemList.appendChild(li);
-      });
-    }
 
     rollItemButton.addEventListener('click', () => {
       if (items.length > 0) {
@@ -45,9 +32,6 @@
         resultDisplay.textContent = '⚠️ No items available!';
       }
     });
-
-    // Initial render of items
-    renderItems();
   </script>
 </body>
 </html>
