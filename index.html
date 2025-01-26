@@ -26,13 +26,15 @@
     >
       Roll Item
     </button>
-    <p id="textResult" class="text-center text-lg font-medium text-blue-600 mt-4"></p>
-    <p id="itemResult" class="text-center text-lg font-medium text-green-600 mt-2"></p>
+    <div class="border border-gray-300 rounded-lg p-4 mt-4 bg-gray-50">
+      <p id="textResult" class="text-center text-lg font-medium text-blue-600"></p>
+      <p id="itemResult" class="text-center text-lg font-medium text-green-600 mt-2"></p>
+    </div>
   </div>
 
   <script type="module">
-    import { categories } from './data/items.js';
-    import { predeterminedText } from './data/text.js';
+    import { categories } from './items.js';
+    import { categoryTexts } from './text.js';
 
     const rollItemButton = document.getElementById('rollItem');
     const textResultDisplay = document.getElementById('textResult');
@@ -57,9 +59,10 @@
       const selectedCategory = document.querySelector('input[name="category"]:checked').value;
       const items = categories[selectedCategory] || [];
 
-      // Get predetermined text
-      const randomTextIndex = Math.floor(Math.random() * predeterminedText.length);
-      const randomText = predeterminedText[randomTextIndex];
+      // Get predetermined text for the selected category
+      const categoryText = categoryTexts[selectedCategory] || [];
+      const randomTextIndex = Math.floor(Math.random() * categoryText.length);
+      const randomText = categoryText[randomTextIndex] || "No description available.";
 
       // Display predetermined text
       textResultDisplay.textContent = randomText;
