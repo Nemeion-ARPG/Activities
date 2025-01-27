@@ -54,11 +54,14 @@ rollItemButton.addEventListener('click', () => {
   const items = categories[selectedCategory] || [];
   if (items.length > 0) {
     const { regularItems, bearBonus } = rollWithBearEffect(items);
-    let resultText = `🎲 Rolled Items: ${regularItems.join(', ')}`;
+
+    // Create a vertical list of items
+    let resultText = regularItems.map(item => `<li>${item}</li>`).join('');
     if (bearBonus) {
-      resultText += `\n🐻 Bonus Item (Bear): ${bearBonus}`;
+      resultText += `<li>🐻 Bonus Item (Bear): ${bearBonus}</li>`;
     }
-    itemResultDisplay.textContent = resultText;
+    
+    itemResultDisplay.innerHTML = `<ul>${resultText}</ul>`;
   } else {
     itemResultDisplay.textContent = '⚠️ No items available!';
   }
