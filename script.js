@@ -12,28 +12,32 @@ document.getElementById('rollItem').addEventListener('click', () => {
   itemResult.textContent = '';
 
   // Display text results based on selected category
-  const categoryText = textData[selectedCategory];
-  if (categoryText) {
+  const categoryText = textData[selectedCategory] || [];
+  if (categoryText.length > 0) {
     textResult.textContent = categoryText[Math.floor(Math.random() * categoryText.length)];
+  } else {
+    textResult.textContent = 'No text available for this category.';
   }
 
   // Check if "Bear" checkbox is selected
   const bearCheckbox = document.getElementById('bearCheckbox');
-  if (bearCheckbox.checked && selectedCategory === 'foraging') {
+  if (bearCheckbox.checked) {
     const randomChance = Math.random();
     if (randomChance <= 0.25) {
-      const foragingItems = items['foraging'].filter(item => item.rarity >= 1 && item.rarity <= 5);
-      const randomItem = foragingItems[Math.floor(Math.random() * foragingItems.length)];
-      itemResult.textContent = `Bear Bonus Item: ${randomItem.name}`;
-      return;
+      const foragingItems = items['foraging']?.filter(item => item.rarity >= 1 && item.rarity <= 5) || [];
+      if (foragingItems.length > 0) {
+        const randomItem = foragingItems[Math.floor(Math.random() * foragingItems.length)];
+        itemResult.textContent = `Bear Bonus Item: ${randomItem.name}`;
+        return; // Skip normal roll if bonus applies
+      }
     }
   }
 
   // Determine number of items to roll (1-3)
   const itemCount = Math.floor(Math.random() * 3) + 1;
-  const categoryItems = items[selectedCategory];
+  const categoryItems = items[selectedCategory] || [];
 
-  if (categoryItems && categoryItems.length > 0) {
+  if (categoryItems.length > 0) {
     const rolledItems = [];
 
     for (let i = 0; i < itemCount; i++) {
