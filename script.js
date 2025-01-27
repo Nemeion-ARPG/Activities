@@ -1,5 +1,5 @@
-import { items } from './data/items.js';
-import { textData } from './data/text.js';
+import { items } from './items.js';
+import { textData } from './text.js';
 
 document.getElementById('rollItem').addEventListener('click', () => {
   const selectedCategory = document.querySelector('input[name="category"]:checked').value;
