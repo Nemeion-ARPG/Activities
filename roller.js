@@ -5,7 +5,7 @@ const rollItemButton = document.getElementById('rollItem');
 const textResultDisplay = document.getElementById('textResult');
 const itemResultDisplay = document.getElementById('itemResult');
 
-const bearCheckbox = document.querySelector('details:nth-child(1) input[type="checkbox"]:first-child');
+const bearCheckbox = document.getElementById('bearCheckbox');
 
 function getWeightedRandomItem(items) {
   const weightedItems = items.flatMap(item => Array(item.rarity).fill(item.name));
@@ -24,7 +24,7 @@ function rollMultipleItems(items, min = 1, max = 3) {
 
 function rollWithBearEffect(items) {
   const results = rollMultipleItems(items);
-  
+
   // Add Bear effect
   if (bearCheckbox.checked) {
     const chance = Math.random();
@@ -32,29 +32,34 @@ function rollWithBearEffect(items) {
       const foragingItems = categories.foraging.filter(item => item.rarity >= 1 && item.rarity <= 5);
       if (foragingItems.length > 0) {
         const bearItem = getWeightedRandomItem(foragingItems);
-        results.push(`🐻 Bonus Item (Bear): ${bearItem}`);
+        return {
+          regularItems: results,
+          bearBonus: bearItem
+        };
       }
     }
   }
 
-  return results;
+  return { regularItems: results };
 }
 
 rollItemButton.addEventListener('click', () => {
   const selectedCategory = document.querySelector('input[name="category"]:checked').value;
   const items = categories[selectedCategory] || [];
-
-  // Get predetermined text for the selected category
-  const categoryText = categoryTexts[selectedCategory] || [];
-  const randomTextIndex = Math.floor(Math.random() * categoryText.length);
-  const randomText = categoryText[randomTextIndex] || "No description available.";
+  const textForCategory = categoryTexts[selectedCategory] || ["No description available."];
 
   // Display predetermined text
-  textResultDisplay.textContent = randomText;
+  textResultDisplay.textContent = textForCategory[Math.floor(Math.random() * textForCategory.length)];
 
   if (items.length > 0) {
-    const rolledItems = rollWithBearEffect(items);
-    itemResultDisplay.textContent = `🎲 Rolled Items: ${rolledItems.join(', ')}`;
+    const { regularItems, bearBonus } = rollWithBearEffect(items);
+
+    let resultText = `🎲 Rolled Items: ${regularItems.join(', ')}`;
+    if (bearBonus) {
+      resultText += `\n🐻 Bonus Item (Bear): ${bearBonus}`;
+    }
+
+    itemResultDisplay.textContent = resultText;
   } else {
     itemResultDisplay.textContent = '⚠️ No items available!';
   }
