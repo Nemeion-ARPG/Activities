@@ -15,7 +15,7 @@ import {
   applyLynxEffect,
   applySnakeEffect,
   applyWolfEffect,
-  applyHorseEffect
+  applyHorseEffect,
 } from './effects.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lynx: document.getElementById('lynxCheckbox'),
     snake: document.getElementById('snakeCheckbox'),
     wolf: document.getElementById('wolfCheckbox'),
-    horse: document.getElementById('horseCheckbox')
+    horse: document.getElementById('horseCheckbox'),
   };
 
   function getWeightedRandomItem(items) {
@@ -60,43 +60,38 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const selectedCategory = document.querySelector('input[name="category"]:checked')?.value;
 
-      // Error handling if no category is selected
       if (!selectedCategory) {
         textResultDisplay.textContent = "⚠️ Please select a category!";
         itemResultDisplay.textContent = "";
         return;
       }
 
-      // Fetch text for category
       const textForCategory = categoryTexts[selectedCategory] || ["No description available."];
       const randomTextIndex = Math.floor(Math.random() * textForCategory.length);
       textResultDisplay.textContent = textForCategory[randomTextIndex];
 
-      // Roll items
       const items = categories[selectedCategory] || [];
       if (items.length > 0) {
         const regularItems = rollMultipleItems(items);
 
-        // Apply effects
         const allBonuses = [
-          ...applyBearEffect(checkboxes.bear),
-          ...applyBoarEffect(checkboxes.boar),
-          ...applyRaccoonEffect(checkboxes.raccoon),
-          ...applyCrowEffect(checkboxes.crow),
-          ...applyHyenaEffect(checkboxes.hyena),
-          ...applyWeaselEffect(checkboxes.weasel),
-          ...applyCougarEffect(checkboxes.cougar),
-          ...applyCrocodileEffect(checkboxes.crocodile),
-          ...applyHoundEffect(checkboxes.hound),
-          ...applyFalconEffect(checkboxes.falcon),
-          ...applyMastiffEffect(checkboxes.mastiff),
-          ...applyLynxEffect(checkboxes.lynx),
-          ...applySnakeEffect(checkboxes.snake),
-          ...applyWolfEffect(checkboxes.wolf),
-          ...applyHorseEffect(checkboxes.horse)
+          ...(checkboxes.bear ? applyBearEffect(checkboxes.bear) : []),
+          ...(checkboxes.boar ? applyBoarEffect(checkboxes.boar) : []),
+          ...(checkboxes.raccoon ? applyRaccoonEffect(checkboxes.raccoon) : []),
+          ...(checkboxes.crow ? applyCrowEffect(checkboxes.crow) : []),
+          ...(checkboxes.hyena ? applyHyenaEffect(checkboxes.hyena) : []),
+          ...(checkboxes.weasel ? applyWeaselEffect(checkboxes.weasel) : []),
+          ...(checkboxes.cougar ? applyCougarEffect(checkboxes.cougar) : []),
+          ...(checkboxes.crocodile ? applyCrocodileEffect(checkboxes.crocodile) : []),
+          ...(checkboxes.hound ? applyHoundEffect(checkboxes.hound) : []),
+          ...(checkboxes.falcon ? applyFalconEffect(checkboxes.falcon) : []),
+          ...(checkboxes.mastiff ? applyMastiffEffect(checkboxes.mastiff) : []),
+          ...(checkboxes.lynx ? applyLynxEffect(checkboxes.lynx) : []),
+          ...(checkboxes.snake ? applySnakeEffect(checkboxes.snake) : []),
+          ...(checkboxes.wolf ? applyWolfEffect(checkboxes.wolf) : []),
+          ...(checkboxes.horse ? applyHorseEffect(checkboxes.horse) : []),
         ];
 
-        // Combine results
         let resultText = regularItems.map(item => `<li>${item}</li>`).join('');
         if (allBonuses.length > 0) {
           resultText += allBonuses.map(bonus => `<li>${bonus}</li>`).join('');
