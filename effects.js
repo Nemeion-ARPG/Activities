@@ -186,7 +186,7 @@ export function applyBearEffect(bearCheckbox) {
         const crusadesItems = categories.crusades.filter(item => item.rarity >= 1 && item.rarity <= 5);
         if (crusadesItems.length > 0) {
           const snakeBonusItem = getWeightedRandomItem(crusadesItems);
-          bonuses.push(`🐍 Bonus Item (Snake): ${snakeBonusItem}`);
+          bonuses.push(`Bonus Item (Snake): ${snakeBonusItem}`);
         }
       }
     }
