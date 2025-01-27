@@ -23,21 +23,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const textResultDisplay = document.getElementById('textResult');
   const itemResultDisplay = document.getElementById('itemResult');
 
-  const bearCheckbox = document.getElementById('bearCheckbox');
-  const boarCheckbox = document.getElementById('boarCheckbox');
-  const raccoonCheckbox = document.getElementById('raccoonCheckbox');
-  const crowCheckbox = document.getElementById('crowCheckbox');
-  const hyenaCheckbox = document.getElementById('hyenaCheckbox');
-  const weaselCheckbox = document.getElementById('weaselCheckbox');
-  const cougarCheckbox = document.getElementById('cougarCheckbox');
-  const crocodileCheckbox = document.getElementById('crocodileCheckbox');
-  const houndCheckbox = document.getElementById('houndCheckbox');
-  const falconCheckbox = document.getElementById('falconCheckbox');
-  const mastiffCheckbox = document.getElementById('mastiffCheckbox');
-  const lynxCheckbox = document.getElementById('lynxCheckbox');
-  const snakeCheckbox = document.getElementById('snakeCheckbox');
-  const wolfCheckbox = document.getElementById('wolfCheckbox');
-  const horseCheckbox = document.getElementById('horseCheckbox');
+  const checkboxes = {
+    bear: document.getElementById('bearCheckbox'),
+    boar: document.getElementById('boarCheckbox'),
+    raccoon: document.getElementById('raccoonCheckbox'),
+    crow: document.getElementById('crowCheckbox'),
+    hyena: document.getElementById('hyenaCheckbox'),
+    weasel: document.getElementById('weaselCheckbox'),
+    cougar: document.getElementById('cougarCheckbox'),
+    crocodile: document.getElementById('crocodileCheckbox'),
+    hound: document.getElementById('houndCheckbox'),
+    falcon: document.getElementById('falconCheckbox'),
+    mastiff: document.getElementById('mastiffCheckbox'),
+    lynx: document.getElementById('lynxCheckbox'),
+    snake: document.getElementById('snakeCheckbox'),
+    wolf: document.getElementById('wolfCheckbox'),
+    horse: document.getElementById('horseCheckbox')
+  };
 
   function getWeightedRandomItem(items) {
     const weightedItems = items.flatMap(item => Array(item.rarity).fill(item.name));
@@ -77,21 +79,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Apply effects
         const allBonuses = [
-          ...applyBearEffect(bearCheckbox),
-          ...applyBoarEffect(boarCheckbox),
-          ...applyRaccoonEffect(raccoonCheckbox),
-          ...applyCrowEffect(crowCheckbox),
-          ...applyHyenaEffect(hyenaCheckbox),
-          ...applyWeaselEffect(weaselCheckbox),
-          ...applyCougarEffect(cougarCheckbox),
-          ...applyCrocodileEffect(crocodileCheckbox),
-          ...applyHoundEffect(houndCheckbox),
-          ...applyFalconEffect(falconCheckbox),
-          ...applyMastiffEffect(mastiffCheckbox),
-          ...applyLynxEffect(lynxCheckbox),
-          ...applySnakeEffect(snakeCheckbox),
-          ...applyWolfEffect(wolfCheckbox),
-          ...applyHorseEffect(horseCheckbox)
+          ...applyBearEffect(checkboxes.bear),
+          ...applyBoarEffect(checkboxes.boar),
+          ...applyRaccoonEffect(checkboxes.raccoon),
+          ...applyCrowEffect(checkboxes.crow),
+          ...applyHyenaEffect(checkboxes.hyena),
+          ...applyWeaselEffect(checkboxes.weasel),
+          ...applyCougarEffect(checkboxes.cougar),
+          ...applyCrocodileEffect(checkboxes.crocodile),
+          ...applyHoundEffect(checkboxes.hound),
+          ...applyFalconEffect(checkboxes.falcon),
+          ...applyMastiffEffect(checkboxes.mastiff),
+          ...applyLynxEffect(checkboxes.lynx),
+          ...applySnakeEffect(checkboxes.snake),
+          ...applyWolfEffect(checkboxes.wolf),
+          ...applyHorseEffect(checkboxes.horse)
         ];
 
         // Combine results
