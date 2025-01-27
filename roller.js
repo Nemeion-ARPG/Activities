@@ -1,11 +1,14 @@
 import { categories } from './items.js';
 import { categoryTexts } from './text.js';
+import { applyBearEffect, applyBoarEffect, applyRaccoonEffect } from './effects.js';
 
 const rollItemButton = document.getElementById('rollItem');
 const textResultDisplay = document.getElementById('textResult');
 const itemResultDisplay = document.getElementById('itemResult');
 
 const bearCheckbox = document.getElementById('bearCheckbox');
+const boarCheckbox = document.getElementById('boarCheckbox');
+const raccoonCheckbox = document.getElementById('raccoonCheckbox');
 
 function getWeightedRandomItem(items) {
   const weightedItems = items.flatMap(item => Array(item.rarity).fill(item.name));
@@ -22,26 +25,6 @@ function rollMultipleItems(items, min = 1, max = 3) {
   return results;
 }
 
-function rollWithBearEffect(items) {
-  const results = rollMultipleItems(items);
-
-  if (bearCheckbox.checked) {
-    const chance = Math.random();
-    if (chance < 0.25) {
-      const foragingItems = categories.foraging.filter(item => item.rarity >= 1 && item.rarity <= 5);
-      if (foragingItems.length > 0) {
-        const bearBonusItem = getWeightedRandomItem(foragingItems);
-        return {
-          regularItems: results,
-          bearBonus: bearBonusItem
-        };
-      }
-    }
-  }
-
-  return { regularItems: results };
-}
-
 rollItemButton.addEventListener('click', () => {
   const selectedCategory = document.querySelector('input[name="category"]:checked').value;
 
@@ -53,12 +36,18 @@ rollItemButton.addEventListener('click', () => {
   // Roll items
   const items = categories[selectedCategory] || [];
   if (items.length > 0) {
-    const { regularItems, bearBonus } = rollWithBearEffect(items);
+    const regularItems = rollMultipleItems(items);
+
+    // Apply effects
+    const bearBonuses = applyBearEffect(bearCheckbox);
+    const boarBonuses = applyBoarEffect(boarCheckbox);
+    const raccoonBonuses = applyRaccoonEffect(raccoonCheckbox);
 
     // Create a vertical list of items
     let resultText = regularItems.map(item => `<li>${item}</li>`).join('');
-    if (bearBonus) {
-      resultText += `<li>🐻 Bonus Item (Bear): ${bearBonus}</li>`;
+    const bonuses = [...bearBonuses, ...boarBonuses, ...raccoonBonuses];
+    if (bonuses.length > 0) {
+      resultText += bonuses.map(bonus => `<li>${bonus}</li>`).join('');
     }
     
     itemResultDisplay.innerHTML = `<ul>${resultText}</ul>`;
