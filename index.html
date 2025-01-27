@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nemeion Activity Roller</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./data/styles.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
   <div class="bg-white shadow-xl rounded-2xl p-6 w-[36rem]">
@@ -25,10 +25,10 @@
     <div class="mb-4">
       <label class="block mb-2 font-medium text-center">Additional Options:</label>
       <div class="flex justify-center space-x-4">
-        <div class="bg-gray-100 p-2 rounded-lg w-1/3">
-          <h3 class="font-medium">Companions</h3>
-          <div class="pl-4 pt-2 scrollable">
-            <label class="block"><input type="checkbox" class="mr-2"> Bear</label>
+        <details class="bg-gray-100 p-2 rounded-lg w-1/3">
+          <summary class="cursor-pointer font-medium">Companions</summary>
+          <div class="pl-4 pt-2">
+            <label class="block"><input type="checkbox" class="mr-2" id="bearCheckbox"> Bear</label>
             <label class="block"><input type="checkbox" class="mr-2"> Boar</label>
             <label class="block"><input type="checkbox" class="mr-2"> Cougar</label>
             <label class="block"><input type="checkbox" class="mr-2"> Crocodile</label>
@@ -45,10 +45,10 @@
             <label class="block"><input type="checkbox" class="mr-2"> Wolf</label>
             <label class="block"><input type="checkbox" class="mr-2"> Spectral Bonehound</label>
           </div>
-        </div>
-        <div class="bg-gray-100 p-2 rounded-lg w-1/3">
-          <h3 class="font-medium">Equipment</h3>
-          <div class="pl-4 pt-2 scrollable">
+        </details>
+        <details class="bg-gray-100 p-2 rounded-lg w-1/3">
+          <summary class="cursor-pointer font-medium">Equipment</summary>
+          <div class="pl-4 pt-2">
             <label class="block"><input type="checkbox" class="mr-2"> Arrows</label>
             <label class="block"><input type="checkbox" class="mr-2"> Axe</label>
             <label class="block"><input type="checkbox" class="mr-2"> Bow</label>
@@ -67,15 +67,15 @@
             <label class="block"><input type="checkbox" class="mr-2"> Trap Netting</label>
             <label class="block"><input type="checkbox" class="mr-2"> Wicker Basket</label>
           </div>
-        </div>
-        <div class="bg-gray-100 p-2 rounded-lg w-1/3">
-          <h3 class="font-medium">Traits</h3>
-          <div class="pl-4 pt-2 scrollable">
+        </details>
+        <details class="bg-gray-100 p-2 rounded-lg w-1/3">
+          <summary class="cursor-pointer font-medium">Traits</summary>
+          <div class="pl-4 pt-2">
             <label class="block"><input type="checkbox" class="mr-2"> Sub-option 3A</label>
             <label class="block"><input type="checkbox" class="mr-2"> Sub-option 3B</label>
             <label class="block"><input type="checkbox" class="mr-2"> Sub-option 3C</label>
           </div>
-        </div>
+        </details>
       </div>
     </div>
 
@@ -90,4 +90,7 @@
       <p id="itemResult" class="text-center text-lg font-medium text-green-600 mt-2"></p>
     </div>
   </div>
-  <script type="module" src="./data/roller.js"></script>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
