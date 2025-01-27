@@ -1,3 +1,5 @@
+import { categories } from './items.js';
+
 export function applyBearEffect(bearCheckbox) {
     const bonuses = [];
     if (bearCheckbox?.checked) {
