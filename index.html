@@ -3,64 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random Item Roller</title>
+  <title>Nemeion Activity Roller</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-image: url('https://www.nemeionarpg.com/files/Images/Athens-bg.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    .result-box {
-      background-color: #E4D2BC;
-      width: 150%;
-      height: 150%;
-    }
-  </style>
+  <link rel="stylesheet" href="./data/styles.css">
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
   <div class="bg-white shadow-xl rounded-2xl p-6 w-[36rem]">
-    <h1 class="text-2xl font-bold text-center mb-4">Random Item Roller</h1>
+    <h1 class="text-2xl font-bold text-center mb-4">Nemeion Activity Roller</h1>
     <div class="mb-4">
       <label class="block mb-2 font-medium text-center">Select Category:</label>
       <div class="flex justify-center space-x-4">
-        <label class="flex items-center"><input type="radio" name="category" value="weapons" class="mr-2" checked> Weapons</label>
-        <label class="flex items-center"><input type="radio" name="category" value="armor" class="mr-2"> Armor</label>
-        <label class="flex items-center"><input type="radio" name="category" value="potions" class="mr-2"> Potions</label>
-        <label class="flex items-center"><input type="radio" name="category" value="rings" class="mr-2"> Rings</label>
-        <label class="flex items-center"><input type="radio" name="category" value="amulets" class="mr-2"> Amulets</label>
-        <label class="flex items-center"><input type="radio" name="category" value="misc" class="mr-2"> Miscellaneous</label>
+        <label class="flex items-center"><input type="radio" name="category" value="weapons" class="mr-2" checked> Expeditions</label>
+        <label class="flex items-center"><input type="radio" name="category" value="armor" class="mr-2"> Fishing</label>
+        <label class="flex items-center"><input type="radio" name="category" value="potions" class="mr-2"> Foraging</label>
+        <label class="flex items-center"><input type="radio" name="category" value="rings" class="mr-2"> Hunting</label>
+        <label class="flex items-center"><input type="radio" name="category" value="amulets" class="mr-2"> Caving</label>
+        <label class="flex items-center"><input type="radio" name="category" value="misc" class="mr-2"> Crusades</label>
       </div>
     </div>
 
     <div class="mb-4">
       <label class="block mb-2 font-medium text-center">Additional Options:</label>
-      <div class="space-y-2">
-        <details class="bg-gray-100 p-2 rounded-lg">
-          <summary class="cursor-pointer font-medium">Option Group 1</summary>
-          <div class="pl-4 pt-2">
-            <label class="block"><input type="checkbox" class="mr-2"> Sub-option 1A</label>
-            <label class="block"><input type="checkbox" class="mr-2"> Sub-option 1B</label>
-            <label class="block"><input type="checkbox" class="mr-2"> Sub-option 1C</label>
+      <div class="flex justify-center space-x-4">
+        <div class="bg-gray-100 p-2 rounded-lg w-1/3">
+          <h3 class="font-medium">Companions</h3>
+          <div class="pl-4 pt-2 scrollable">
+            <label class="block"><input type="checkbox" class="mr-2"> Bear</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Boar</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Cougar</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Crocodile</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Crow</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Falcon</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Horse</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Hound</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Hyena</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Lynx</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Mastiff</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Raccoon</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Snake</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Weasel</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Wolf</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Spectral Bonehound</label>
           </div>
-        </details>
-        <details class="bg-gray-100 p-2 rounded-lg">
-          <summary class="cursor-pointer font-medium">Option Group 2</summary>
-          <div class="pl-4 pt-2">
-            <label class="block"><input type="checkbox" class="mr-2"> Sub-option 2A</label>
-            <label class="block"><input type="checkbox" class="mr-2"> Sub-option 2B</label>
-            <label class="block"><input type="checkbox" class="mr-2"> Sub-option 2C</label>
+        </div>
+        <div class="bg-gray-100 p-2 rounded-lg w-1/3">
+          <h3 class="font-medium">Equipment</h3>
+          <div class="pl-4 pt-2 scrollable">
+            <label class="block"><input type="checkbox" class="mr-2"> Arrows</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Axe</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Bow</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Explorer’s Map</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Fishing Rod</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Herbalist Gloves</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Kopis Sword</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Leather Harness</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Lure</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Pickaxe</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Rope</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Satchel</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Shield</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Snare</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Torch</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Trap Netting</label>
+            <label class="block"><input type="checkbox" class="mr-2"> Wicker Basket</label>
           </div>
-        </details>
-        <details class="bg-gray-100 p-2 rounded-lg">
-          <summary class="cursor-pointer font-medium">Option Group 3</summary>
-          <div class="pl-4 pt-2">
+        </div>
+        <div class="bg-gray-100 p-2 rounded-lg w-1/3">
+          <h3 class="font-medium">Traits</h3>
+          <div class="pl-4 pt-2 scrollable">
             <label class="block"><input type="checkbox" class="mr-2"> Sub-option 3A</label>
             <label class="block"><input type="checkbox" class="mr-2"> Sub-option 3B</label>
             <label class="block"><input type="checkbox" class="mr-2"> Sub-option 3C</label>
           </div>
-        </details>
+        </div>
       </div>
     </div>
 
@@ -75,49 +90,4 @@
       <p id="itemResult" class="text-center text-lg font-medium text-green-600 mt-2"></p>
     </div>
   </div>
-
-  <script type="module">
-    import { categories } from './data/items.js';
-    import { categoryTexts } from './data/text.js';
-
-    const rollItemButton = document.getElementById('rollItem');
-    const textResultDisplay = document.getElementById('textResult');
-    const itemResultDisplay = document.getElementById('itemResult');
-
-    function getWeightedRandomItem(items) {
-      const weightedItems = items.flatMap(item => Array(item.rarity).fill(item.name));
-      const randomIndex = Math.floor(Math.random() * weightedItems.length);
-      return weightedItems[randomIndex];
-    }
-
-    function rollMultipleItems(items, min = 1, max = 3) {
-      const numberOfItems = Math.floor(Math.random() * (max - min + 1)) + min;
-      const results = [];
-      for (let i = 0; i < numberOfItems; i++) {
-        results.push(getWeightedRandomItem(items));
-      }
-      return results;
-    }
-
-    rollItemButton.addEventListener('click', () => {
-      const selectedCategory = document.querySelector('input[name="category"]:checked').value;
-      const items = categories[selectedCategory] || [];
-
-      // Get predetermined text for the selected category
-      const categoryText = categoryTexts[selectedCategory] || [];
-      const randomTextIndex = Math.floor(Math.random() * categoryText.length);
-      const randomText = categoryText[randomTextIndex] || "No description available.";
-
-      // Display predetermined text
-      textResultDisplay.textContent = randomText;
-
-      if (items.length > 0) {
-        const rolledItems = rollMultipleItems(items);
-        itemResultDisplay.textContent = `🎲 Rolled Items: ${rolledItems.join(', ')}`;
-      } else {
-        itemResultDisplay.textContent = '⚠️ No items available!';
-      }
-    });
-  </script>
-</body>
-</html>
+  <script type="module" src="./data/roller.js"></script>

@@ -1,27 +1,33 @@
 export const categories = {
-    weapons: [
-      { name: "Sword", rarity: 5 },
-      { name: "Bow", rarity: 3 }
+    expeditions: [
+      { name: 'Map of Hidden Trails', rarity: 5 },
+      { name: 'Compass of True North', rarity: 3 },
+      { name: 'Ancient Expedition Log', rarity: 2 }
     ],
-    armor: [
-      { name: "Shield", rarity: 4 },
-      { name: "Helmet", rarity: 2 }
+    fishing: [
+      { name: 'Golden Fishing Rod', rarity: 4 },
+      { name: 'Enchanted Bait', rarity: 3 },
+      { name: 'Rare Fish Finder', rarity: 2 }
     ],
-    potions: [
-      { name: "Healing Potion", rarity: 8 },
-      { name: "Mana Potion", rarity: 5 }
+    foraging: [
+      { name: 'Basket of Wild Berries', rarity: 5 },
+      { name: 'Herbalist’s Guide', rarity: 3 },
+      { name: 'Mushroom Identification Kit', rarity: 1 }
     ],
-    rings: [
-      { name: "Ring of Strength", rarity: 6 },
-      { name: "Ring of Dexterity", rarity: 4 }
+    hunting: [
+      { name: 'Hunter’s Bow', rarity: 4 },
+      { name: 'Camouflage Cloak', rarity: 3 },
+      { name: 'Animal Call Whistle', rarity: 2 }
     ],
-    amulets: [
-      { name: "Amulet of Protection", rarity: 7 },
-      { name: "Amulet of Power", rarity: 3 }
+    caving: [
+      { name: 'Lantern of Eternal Light', rarity: 5 },
+      { name: 'Climbing Gear Set', rarity: 3 },
+      { name: 'Miner’s Pickaxe', rarity: 2 }
     ],
-    misc: [
-      { name: "Rope", rarity: 10 },
-      { name: "Lantern", rarity: 7 }
+    crusades: [
+      { name: 'Holy Relic', rarity: 5 },
+      { name: 'Knight’s Armor', rarity: 3 },
+      { name: 'Banner of the Faithful', rarity: 2 }
     ]
   };
   

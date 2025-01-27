@@ -1,0 +1,18 @@
+body {
+    background-image: url('https://www.nemeionarpg.com/files/Images/Athens-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .result-box {
+    background-color: #E4D2BC;
+    width: 150%;
+    height: 150%;
+  }
+  
+  .scrollable {
+    max-height: 120px; /* Adjust height as needed */
+    overflow-y: auto;
+  }
+  
