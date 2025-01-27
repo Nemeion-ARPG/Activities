@@ -1,5 +1,5 @@
 export const categoryTexts = {
-    expedition: [
+    expeditions: [
       "You feel the weight of steel in your hands...",
       "A legendary blade glows faintly nearby...",
       "The clash of swords echoes in your mind..."
