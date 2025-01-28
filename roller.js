@@ -17,6 +17,20 @@ import {
   applyWolfEffect,
   applyHorseEffect,
 } from './effects.js';
+import {
+  applyBowEffect,
+  applySnareEffect,
+  applyMapEffect,
+  applySatchelEffect,
+  applyFishingRodEffect,
+  applyLureEffect,
+  applyAxeEffect,
+  applyBasketEffect,
+  applyRopeEffect,
+  applyPickEffect,
+  applyKopisEffect,
+  applyShieldEffect,
+} from './effects.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const rollItemButton = document.getElementById('rollItem');
@@ -39,6 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
     snake: document.getElementById('snakeCheckbox'),
     wolf: document.getElementById('wolfCheckbox'),
     horse: document.getElementById('horseCheckbox'),
+    bow: document.getElementById('bowCheckbox'),
+    snare: document.getElementById('snareCheckbox'),
+    map: document.getElementById('mapCheckbox'),
+    satchel: document.getElementById('satchelheckbox'),
+    fishingrod: document.getElementById('fishingrodCheckbox'),
+    lure: document.getElementById('lureCheckbox'),
+    axe: document.getElementById('axeCheckbox'),
+    basket: document.getElementById('basketCheckbox'),
+    rope: document.getElementById('ropeCheckbox'),
+    pick: document.getElementById('pickCheckbox'),
+    kopis: document.getElementById('kopisCheckbox'),
+    shield: document.getElementById('shieldCheckbox'),
+
   };
 
   function getWeightedRandomItem(items) {
@@ -90,6 +117,20 @@ document.addEventListener('DOMContentLoaded', () => {
           ...(checkboxes.snake ? applySnakeEffect(checkboxes.snake) : []),
           ...(checkboxes.wolf ? applyWolfEffect(checkboxes.wolf) : []),
           ...(checkboxes.horse ? applyHorseEffect(checkboxes.horse) : []),
+
+          ...(checkboxes.bow ? applyBowEffect(checkboxes.bow) : []),
+          ...(checkboxes.snare ? applySnareEffect(checkboxes.snare) : []),
+          ...(checkboxes.map ? applyMapEffect(checkboxes.map) : []),
+          ...(checkboxes.satchel ? applySatchelEffect(checkboxes.satchel) : []),
+          ...(checkboxes.fishingrod ? applyFishingRodEffect(checkboxes.fishingrod) : []),
+          ...(checkboxes.lure ? applyLureEffect(checkboxes.lure) : []),
+          ...(checkboxes.axe ? applyAxeEffect(checkboxes.axe) : []),
+          ...(checkboxes.basket ? applyBasketEffect(checkboxes.basket) : []),
+          ...(checkboxes.rope ? applyRopeEffect(checkboxes.rope) : []),
+          ...(checkboxes.pick ? applyPickEffect(checkboxes.pick) : []),
+          ...(checkboxes.kopis ? applyKopisEffect(checkboxes.kopis) : []),
+          ...(checkboxes.shield ? applyShieldEffect(checkboxes.shield) : []),
+
         ];
 
         let resultText = regularItems.map(item => `<li>${item}</li>`).join('');
